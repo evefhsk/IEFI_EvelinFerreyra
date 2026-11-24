@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil | SoundDay</title>
+    <link rel="stylesheet" href="./recursos/estilos/estilos.css">
+    <link rel="stylesheet" href="./recursos/estilos/perfil.css">
+</head>
+
+<body>
+    <header class="encabezado-principal">
+        <a class="encabezado-principal__logo-enlace" href="/index.html" aria-label="SoundDay Inicio">
+            <img class="encabezado-principal__logo-img" src="./recursos/imagenes/logos/soundday_white.png"
+                alt="Logo SoundDay">
+        </a>
+        <nav class="encabezado-principal__nav" aria-label="Navegación principal">
+            <a class="encabezado-principal__nav-enlace" href="/index.html">Inicio</a>
+            <a class="encabezado-principal__nav-enlace" href="/artistas.html">Artistas</a>
+            <a class="encabezado-principal__nav-enlace" href="/contacto.html">Contacto</a>
+            <a class="encabezado-principal__carrito" href="./perfil.html#seccion-carrito"
+                aria-label="Ver carrito de reservas">
+                <img class="encabezado-principal__carrito-icono" src="./recursos/imagenes/iconos/carrito.svg" alt="">
+                <span class="encabezado-principal__carrito-contador" id="contador-carrito-header">0</span>
+            </a>
+            <a class="encabezado-principal__nav-perfil encabezado-principal__nav-perfil--activo" href="/perfil.html"
+                aria-label="Mi Perfil" aria-current="page">
+                <img class="encabezado-principal__perfil-img" src="./recursos/imagenes/logos/usuario.png" alt="Perfil">
+            </a>
+
+        </nav>
+    </header>
+    <main class="contenido-principal">
+        <div class="perfil-layout-principal">
+            <aside class="perfil-columna-izquierda">
+                <section class="perfil-seccion" aria-labelledby="titulo-datos-usuario">
+                    <div class="perfil-tarjeta">
+                        <img class="perfil-avatar" src="./recursos/imagenes/logos/usuario.png"
+                            alt="Foto de perfil de Carla Rinaldi">
+                        <h1 class="perfil-subtitulo" id="titulo-datos-usuario">Carla Rinaldi</h1>
+                        <p class="perfil-texto">carlarinaldi@gmail.com</p>
+                        <p class="perfil-texto">Tel: 3511234567</p>
+                        <p class="perfil-texto">Nueva Córdoba</p>
+
+                        <ul class="perfil-lista-enlaces">
+                            <li>
+                                <a class="perfil-enlace-menu" href="#artistas-seguidos">Artistas seguidos &gt;</a>
+                            </li>
+                            <li>
+                                <a class="perfil-enlace-menu" href="#detalles-fanpack">Ver Fan Packs disponibles
+                                    &gt;</a>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
+            </aside>
+
+            <div class="perfil-columna-derecha">
+                <section class="perfil-seccion" id="eventos-perfil" aria-labelledby="titulo-proximos-eventos">
+                    <h2 class="perfil-titulo-seccion" id="titulo-proximos-eventos">Mis próximos eventos</h2>
+                    <div class="perfil-eventos-lista" id="lista-eventos-guardados"></div>
+                    <a class="boton boton--primario" href="#seccion-eventos">Explorar eventos</a>
+                </section>
+
+                <section class="perfil-seccion" id="seccion-carrito" aria-labelledby="titulo-fanpacks-reservados">
+                    <h2 class="perfil-titulo-seccion" id="titulo-fanpacks-reservados">Mis Fan Packs reservados</h2>
+                    <div class="perfil-tabla-contenedor">
+                        <table class="perfil-tabla">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nombre producto</th>
+                                    <th scope="col">Cant.</th>
+                                    <th scope="col">Precio final</th>
+                                    <th scope="col">Estado</th>
+                                    <th scope="col">Detalles</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabla-reservas"></tbody>
+                        </table>
+                    </div>
+
+                    <div id="panel-checkout-reservas" class="checkout-panel seccion-oculta">
+                        <p id="total-checkout-reservas" class="checkout-total">Total estimado: $0</p>
+                        <form id="form-checkout-reservas" class="checkout-formulario" novalidate>
+                            <div class="checkout-campo">
+                                <label class="checkout-campo__label" for="checkout-nombre">Nombre completo</label>
+                                <input class="checkout-campo__input" type="text" id="checkout-nombre" name="nombre"
+                                    value="Carla Rinaldi" minlength="3" required>
+                            </div>
+                            <div class="checkout-campo">
+                                <label class="checkout-campo__label" for="checkout-email">Email de confirmación</label>
+                                <input class="checkout-campo__input" type="email" id="checkout-email" name="email"
+                                    value="carlarinaldi@gmail.com" required>
+                            </div>
+                            <div class="checkout-campo">
+                                <label class="checkout-campo__label" for="checkout-telefono">Teléfono / WhatsApp</label>
+                                <input class="checkout-campo__input" type="tel" id="checkout-telefono" name="telefono"
+                                    value="3511234567" minlength="8" required>
+                            </div>
+                            <div class="checkout-acciones">
+                                <button type="submit" class="boton boton--primario">Confirmar por Email</button>
+                                <button type="button" id="btn-confirmar-whatsapp"
+                                    class="boton boton--whatsapp">Confirmar por WhatsApp</button>
+                            </div>
+                        </form>
+                    </div>
+                </section>
+            </div>
+            <div class="perfil-secciones-completas">
+                <div id="contenedor-modulo-eventos"></div>
+
+                <section class="vista-detalle seccion-oculta" id="detalles-evento"
+                    aria-labelledby="nombre-detalle-evento">
+                    <a class="boton-volver" href="#eventos-perfil">
+                        <span class="boton-volver__flecha" aria-hidden="true">&larr;</span> Volver a mis eventos
+                    </a>
+
+                    <div class="detalle-hero">
+                        <figure class="detalle-hero__marco-foto">
+                            <img class="detalle-hero__foto" id="imagen-detalle-evento"
+                                src="./recursos/imagenes/artistas/thebeatlestour.jpg"
+                                alt="Imagen del evento seleccionado">
+                        </figure>
+                        <div class="detalle-hero__info">
+                            <p id="artista-detalle-evento">Artista</p>
+                            <h2 class="detalle-hero__nombre" id="nombre-detalle-evento">Nombre del evento</h2>
+                            <p class="detalle-hero__descripcion" id="descripcion-detalle-evento">Descripción del evento
+                                seleccionado.</p>
+                            <p class="detalle-hero__fecha"><strong>Fecha:</strong> <span id="fecha-detalle-evento">Fecha
+                                    del evento</span></p>
+                        </div>
+                    </div>
+
+                    <div class="detalle-paneles-grilla">
+                        <article class="panel-box">
+                            <h3 class="panel-box__titulo">INFORMACIÓN DEL SHOW Y RECINTO</h3>
+                            <div class="horarios-grid">
+                                <div class="horarios-grid__celda">
+                                    <span class="horarios-grid__etiqueta">Apertura de puertas</span>
+                                    <strong class="horarios-grid__valor" id="apertura-puertas-evento">-</strong>
+                                </div>
+                                <div class="horarios-grid__celda">
+                                    <span class="horarios-grid__etiqueta">Inicio del show</span>
+                                    <strong class="horarios-grid__valor" id="inicio-show-evento">-</strong>
+                                </div>
+                                <div class="horarios-grid__celda horarios-grid__celda--completa">
+                                    <span class="horarios-grid__etiqueta">Puntos de acceso</span>
+                                    <strong class="horarios-grid__valor" id="accesos-evento">-</strong>
+                                </div>
+                            </div>
+                            <p class="panel-box__texto-legal" id="elementos-permitidos-evento">
+                                <strong>Elementos permitidos:</strong> Información no disponible.
+                            </p>
+                        </article>
+
+                        <article class="panel-box">
+                            <h3 class="panel-box__titulo">SETLIST PROMEDIO DE LA GIRA</h3>
+                            <ul class="canciones-lista" id="setlist-evento"></ul>
+                        </article>
+
+                        <article class="panel-box panel-box--completo">
+                            <h3 class="panel-box__titulo">RETIRO DE FAN PACK</h3>
+                            <p class="panel-box__texto-legal" id="retiro-fanpack-evento">Información sobre el retiro del
+                                Fan Pack.</p>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="perfil-seccion seccion-oculta" id="artistas-seguidos"
+                    aria-labelledby="titulo-artistas-seguidos">
+                    <a class="boton-volver" href="#eventos-perfil">
+                        <span class="boton-volver__flecha" aria-hidden="true">&larr;</span> Volver a mi perfil
+                    </a>
+                    <h2 class="perfil-titulo-seccion" id="titulo-artistas-seguidos">Artistas seguidos</h2>
+
+                    <form class="perfil-formulario-filtro" action="#" method="get">
+                        <fieldset class="perfil-fieldset">
+                            <legend class="perfil-legend">Filtrar por:</legend>
+                            <label class="perfil-label-radio">
+                                <input type="radio" name="filtro-artista" value="todos" checked> Todos
+                            </label>
+                            <label class="perfil-label-radio">
+                                <input type="radio" name="filtro-artista" value="pop"> Pop
+                            </label>
+                            <label class="perfil-label-radio">
+                                <input type="radio" name="filtro-artista" value="rock"> Rock
+                            </label>
+                            <label class="perfil-label-radio">
+                                <input type="radio" name="filtro-artista" value="rap"> Rap
+                            </label>
+                        </fieldset>
+                    </form>
+
+                    <ul class="perfil-grilla" id="grilla-artistas"></ul>
+                </section>
+
+                <section class="perfil-seccion seccion-oculta" id="detalles-fanpack"
+                    aria-labelledby="titulo-catalogo-fanpacks">
+                    <a class="boton-volver" href="#eventos-perfil">
+                        <span class="boton-volver__flecha" aria-hidden="true">&larr;</span> Volver a mi perfil
+                    </a>
+                    <h2 class="perfil-titulo-seccion" id="titulo-catalogo-fanpacks">Catálogo de Fan Packs</h2>
+
+                    <form class="perfil-formulario-filtro" action="#" method="get">
+                        <fieldset class="perfil-fieldset">
+                            <legend class="perfil-legend">Filtrar por:</legend>
+                            <label class="perfil-label-radio">
+                                <input type="radio" name="filtro-pack" value="todos" checked> Todos
+                            </label>
+                            <label class="perfil-label-radio">
+                                <input type="radio" name="filtro-pack" value="pop"> Pop
+                            </label>
+                            <label class="perfil-label-radio">
+                                <input type="radio" name="filtro-pack" value="rock"> Rock
+                            </label>
+                            <label class="perfil-label-radio">
+                                <input type="radio" name="filtro-pack" value="rap"> Rap
+                            </label>
+                        </fieldset>
+                    </form>
+
+                    <ul class="perfil-grilla" id="grilla-fanpacks"></ul>
+                </section>
+
+                <section class="vista-detalle seccion-oculta" id="vista-detalle-fanpack"
+                    aria-labelledby="nombre-detalle-fanpack">
+                    <a class="boton-volver" href="#detalles-fanpack">
+                        <span class="boton-volver__flecha" aria-hidden="true">&larr;</span> Volver al catálogo
+                    </a>
+
+                    <div class="detalle-hero detalle-hero--fanpack">
+                        <figure class="detalle-hero__marco-foto">
+                            <img class="detalle-hero__foto" id="imagen-detalle-fanpack"
+                                src="./recursos/imagenes/fanpacks/btspack.png" alt="Imagen del Fan Pack seleccionado">
+                        </figure>
+                        <div class="detalle-hero__info">
+                            <p id="artista-detalle-fanpack">Artista</p>
+                            <h2 class="detalle-hero__nombre" id="nombre-detalle-fanpack">Nombre del Fan Pack</h2>
+                            <p class="detalle-hero__descripcion" id="descripcion-detalle-fanpack">Descripción del Fan
+                                Pack seleccionado.</p>
+                            <p id="precio-detalle-fanpack">Precio</p>
+                        </div>
+                        <div class="detalle-hero__acciones">
+                            <button id="boton-agregar-detalle-fanpack"
+                                class="perfil-boton boton-agregar-detalle boton-agregar-pack" type="button">
+                                + Agregar a mis reservas
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="detalle-paneles-grilla">
+                        <article class="panel-box">
+                            <h3 class="panel-box__titulo">CONTENIDO DEL FAN PACK</h3>
+                            <p class="panel-box__texto-legal" id="contenido-productos-fanpack">
+                                Aquí se mostrarán los productos incluidos en el Fan Pack.
+                            </p>
+                        </article>
+
+                        <article class="panel-box">
+                            <h3 class="panel-box__titulo">MODALIDAD DE RETIRO</h3>
+                            <p class="panel-box__texto-legal" id="modalidad-retiro-fanpack">
+                                Aquí se mostrarán las modalidades de retiro disponibles.
+                            </p>
+                        </article>
+
+                        <article class="panel-box panel-box--completo">
+                            <h3 class="panel-box__titulo">MI RESERVA</h3>
+                            <p class="panel-box__texto-legal">
+                                Podés agregar este Fan Pack a tus reservas y consultar la cantidad y el precio final en
+                                la tabla de tu perfil.
+                            </p>
+                            <p class="panel-box__texto-legal">
+                                <strong>Estado:</strong> <span id="estado-reserva-fanpack"
+                                    class="perfil-badge">Disponible</span>
+                            </p>
+                        </article>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="pie-principal">
+        <p>&copy; 2026 SoundDay.com.ar</p>
+        <ul class="pie-principal__lista">
+            <li>@soundday</li>
+            <li>Av. Figueroa Alcorta 1354</li>
+            <li><a href="/contacto.html">Contacto</a></li>
+            <li class="mensajeria">
+                <a href="https://wa.me" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+                    <img src="/recursos/imagenes/iconos/mensaje.png" alt="Icono de mensajería">
+                </a>
+            </li>
+        </ul>
+    </footer>
+
+    <script type="module" src="./recursos/js/perfil.js"></script>
+</body>
+
+</html>

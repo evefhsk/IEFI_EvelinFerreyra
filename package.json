@@ -1,0 +1,9 @@
+{
+    "name": "soundday-web",
+    "version": "1.0.0",
+    "type": "module",
+    "description": "Plataforma web analítica de conciertos, setlists y Fan Packs - IEFI Aplicaciones Web 1",
+    "scripts": {
+        "test": "node --test"
+    }
+}
